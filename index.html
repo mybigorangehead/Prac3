@@ -25,9 +25,12 @@
 			<div id="button"><button onclick = "getLocation()">Refresh GPS:</button> <div id="timer"></div></div>
 
 			<div class="area">
-				<div class="box box1"><div id="latitude">Blah</div></div>
-				<div class="box box2"><div id="longitude">Blah</div></div>
+				<div class="box box1"><div id="longitude">Blah</div></div>
+				<div class="box box2"><div id="latitude">Blah</div></div>
+				
 			</div>
+		</div>
+		<div id = "mapHolder"></div>
 
 
 
@@ -44,6 +47,11 @@
 			function showPosition(position){
 				lat.innerHTML = "Latitude: " + parseFloat(position.coords.latitude).toFixed(5);
 				longit.innerHTML = "Longitude: " + parseFloat(position.coords.longitude).toFixed(5);
+				 var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+				var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="
+				+latlon+"&zoom=14&size=400x300&sensor=false";
+				document.getElementById("mapHolder").innerHTML = "<img src='"+img_url+"'>";
 			}
 
 		</script>
