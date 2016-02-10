@@ -22,7 +22,7 @@
 		<!-- This is, well, the bottom bit -->
 		<div class="bottombit">
 			<p class="explanation">Intrepid spy, your next dead drop location is 37.4258709,-122.1712977.</p>
-			<div id="button">Refresh GPS: <div id="timer"></div></div>
+			<div id="button"><button onclick = "getLocation()">Refresh GPS:</button> <div id="timer"></div></div>
 
 			<div class="area">
 				<div class="box box1"><div id="latitude">Blah</div></div>
@@ -32,7 +32,20 @@
 
 
 		<script>
+			var lat = document.getElementById("latitude");
+			var longit = document.getElementById("longitude");
+			function getLocation(){	
+				if (navigator.geolocation) {				
+					navigator.geolocation.getCurrentPosition(showPosition);
+				} else {
+					alert("Your browser does not support geolocation");
+				}
+			}
+			function showPosition(position){
+				lat.innerHTML = "Latitude: " + parseFloat(position.coords.latitude).toFixed(5);
+				longit.innerHTML = "Longitude: " + parseFloat(position.coords.longitude).toFixed(5);
+			}
 
-</script>
+		</script>
 	</body>
 </html>
